@@ -1,5 +1,3 @@
-import random
-import math
 
 tile_pool = ["1-wan", "1-wan", "1-wan", "1-wan",
              "2-wan", "2-wan", "2-wan", "2-wan",
@@ -47,9 +45,14 @@ for first_tile in tile_pool:
         tile_pool2.remove(second_tile)
         for third_tile in tile_pool2:
             hand.append(third_tile)
-            if is_jiang(hand):
-                num_is_jiang += 1
-            num_possible_hands += 1
+            tile_pool3 = tile_pool2.copy()
+            tile_pool3.remove(third_tile)
+            for fourth_tile in tile_pool3:
+                hand.append(fourth_tile)
+                if is_jiang(hand):
+                    num_is_jiang += 1
+                num_possible_hands += 1
+                hand.pop()
             hand.pop()
         hand.pop()
 
