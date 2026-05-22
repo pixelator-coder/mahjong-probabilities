@@ -5,7 +5,7 @@ tile_pool = ["1-wan", "1-wan", "1-wan", "1-wan",
              "2-wan", "2-wan", "2-wan", "2-wan",
              "3-wan", "3-wan", "3-wan", "3-wan",
              "4-wan", "4-wan", "4-wan", "4-wan",
-             "5-wan", "5-wan", "5-wan", "5-wan",
+              "5-wan", "5-wan", "5-wan", "5-wan",
              "6-wan", "6-wan", "6-wan", "6-wan",
              "7-wan", "7-wan", "7-wan", "7-wan",
              "8-wan", "8-wan", "8-wan", "8-wan",
@@ -38,15 +38,20 @@ def is_jiang(hand):
 
 for first_tile in tile_pool:
     hand.clear()
-    new_tile_pool = tile_pool.copy()
     hand.append(first_tile)
-    new_tile_pool.remove(first_tile)
-    for second_tile in new_tile_pool:
+    tile_pool1 = tile_pool.copy()
+    tile_pool1.remove(first_tile)
+    for second_tile in tile_pool1:
         hand.append(second_tile)
-        if is_jiang(hand):
-            num_is_jiang += 1
-        num_possible_hands += 1
-        hand.pop(1)
+        tile_pool2 = tile_pool1.copy()
+        tile_pool2.remove(second_tile)
+        for third_tile in tile_pool2:
+            hand.append(third_tile)
+            if is_jiang(hand):
+                num_is_jiang += 1
+            num_possible_hands += 1
+            hand.pop()
+        hand.pop()
 
 print(num_possible_hands)
 print(num_is_jiang)
