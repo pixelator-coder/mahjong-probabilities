@@ -16,7 +16,16 @@ tile_pool = ["1-wan", "1-wan", "1-wan", "1-wan",
              "6-tiao", "6-tiao", "6-tiao", "6-tiao",
              "7-tiao", "7-tiao", "7-tiao", "7-tiao",
              "8-tiao", "8-tiao", "8-tiao", "8-tiao",
-             "9-tiao", "9-tiao", "9-tiao", "9-tiao",]
+             "9-tiao", "9-tiao", "9-tiao", "9-tiao",
+             "1-tong", "1-tong", "1-tong", "1-tong",
+             "2-tong", "2-tong", "2-tong", "2-tong",
+             "3-tong", "3-tong", "3-tong", "3-tong",
+             "4-tong", "4-tong", "4-tong", "4-tong",
+             "5-tong", "5-tong", "5-tong", "5-tong",
+             "6-tong", "6-tong", "6-tong", "6-tong",
+             "7-tong", "7-tong", "7-tong", "7-tong",
+             "8-tong", "8-tong", "8-tong", "8-tong",
+             "9-tong", "9-tong", "9-tong", "9-tong",]
 hand = []
 num_is_jiang = 0
 num_possible_hands = 0
@@ -28,9 +37,14 @@ def is_jiang(hand):
     num_2tiaos = hand.count("2-tiao")
     num_5tiaos = hand.count("5-tiao")
     num_8tiaos = hand.count("8-tiao")
+    num_2tongs = hand.count("2-tong")
+    num_5tongs = hand.count("5-tong")
+    num_8tongs = hand.count("8-tong")
     if num_2wans >= 2 or num_5wans >= 2 or num_8wans >= 2:
         return True
     if num_2tiaos >= 2 or num_5tiaos >= 2 or num_8tiaos >= 2:
+        return True
+    if num_2tongs >= 2 or num_5tongs >= 2 or num_8tongs >= 2:
         return True
     return False
 
