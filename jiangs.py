@@ -1,34 +1,37 @@
+import time
+
+start_time = time.time()
 
 tile_pool = ["1-wan", "1-wan", "1-wan", "1-wan",
              "2-wan", "2-wan", "2-wan", "2-wan",
              "3-wan", "3-wan", "3-wan", "3-wan",
              "4-wan", "4-wan", "4-wan", "4-wan",
-              "5-wan", "5-wan", "5-wan", "5-wan",
+             "5-wan", "5-wan", "5-wan", "5-wan",
              "6-wan", "6-wan", "6-wan", "6-wan",
              "7-wan", "7-wan", "7-wan", "7-wan",
              "8-wan", "8-wan", "8-wan", "8-wan",
-             "9-wan", "9-wan", "9-wan", "9-wan",
-             "1-tiao", "1-tiao", "1-tiao", "1-tiao",
-             "2-tiao", "2-tiao", "2-tiao", "2-tiao",
-             "3-tiao", "3-tiao", "3-tiao", "3-tiao",
-             "4-tiao", "4-tiao", "4-tiao", "4-tiao",
-             "5-tiao", "5-tiao", "5-tiao", "5-tiao",
-             "6-tiao", "6-tiao", "6-tiao", "6-tiao",
-             "7-tiao", "7-tiao", "7-tiao", "7-tiao",
-             "8-tiao", "8-tiao", "8-tiao", "8-tiao",
-             "9-tiao", "9-tiao", "9-tiao", "9-tiao",
-             "1-tong", "1-tong", "1-tong", "1-tong",
-             "2-tong", "2-tong", "2-tong", "2-tong",
-             "3-tong", "3-tong", "3-tong", "3-tong",
-             "4-tong", "4-tong", "4-tong", "4-tong",
-             "5-tong", "5-tong", "5-tong", "5-tong",
-             "6-tong", "6-tong", "6-tong", "6-tong",
-             "7-tong", "7-tong", "7-tong", "7-tong",
-             "8-tong", "8-tong", "8-tong", "8-tong",
-             "9-tong", "9-tong", "9-tong", "9-tong",]
+             "9-wan", "9-wan", "9-wan", "9-wan",]
+            #  "1-tiao", "1-tiao", "1-tiao", "1-tiao",
+            #  "2-tiao", "2-tiao", "2-tiao", "2-tiao",
+            #  "3-tiao", "3-tiao", "3-tiao", "3-tiao",
+            #  "4-tiao", "4-tiao", "4-tiao", "4-tiao",
+            #  "5-tiao", "5-tiao", "5-tiao", "5-tiao",
+            #  "6-tiao", "6-tiao", "6-tiao", "6-tiao",
+            #  "7-tiao", "7-tiao", "7-tiao", "7-tiao",
+            #  "8-tiao", "8-tiao", "8-tiao", "8-tiao",
+            #  "9-tiao", "9-tiao", "9-tiao", "9-tiao",
+            #  "1-tong", "1-tong", "1-tong", "1-tong",
+            #  "2-tong", "2-tong", "2-tong", "2-tong",
+            #  "3-tong", "3-tong", "3-tong", "3-tong",
+            #  "4-tong", "4-tong", "4-tong", "4-tong",
+            #  "5-tong", "5-tong", "5-tong", "5-tong",
+            #  "6-tong", "6-tong", "6-tong", "6-tong",
+            #  "7-tong", "7-tong", "7-tong", "7-tong",
+            #  "8-tong", "8-tong", "8-tong", "8-tong",
+            #  "9-tong", "9-tong", "9-tong", "9-tong",]
 hand = []
 num_is_jiang = 0
-num_possible_hands = 0
+num_possible_hands = 36*35*34*33
 
 def is_jiang(hand):
     num_2wans = hand.count("2-wan")
@@ -55,6 +58,11 @@ for first_tile in tile_pool:
     tile_pool1.remove(first_tile)
     for second_tile in tile_pool1:
         hand.append(second_tile)
+        print(hand)
+        if is_jiang(hand):
+            num_is_jiang += 34*33
+            hand.pop()
+            continue
         tile_pool2 = tile_pool1.copy()
         tile_pool2.remove(second_tile)
         for third_tile in tile_pool2:
@@ -65,11 +73,16 @@ for first_tile in tile_pool:
                 hand.append(fourth_tile)
                 if is_jiang(hand):
                     num_is_jiang += 1
-                num_possible_hands += 1
                 hand.pop()
             hand.pop()
         hand.pop()
 
+
+    
 print(num_possible_hands)
 print(num_is_jiang)
 print(str(100*num_is_jiang/num_possible_hands) + " percent.")
+print(start_time)
+end_time = time.time()
+print(end_time)
+print(end_time - start_time)
