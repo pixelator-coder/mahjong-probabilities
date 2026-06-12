@@ -37,18 +37,18 @@ def is_jiang(hand):
     num_2wans = hand.count("2-wan")
     num_5wans = hand.count("5-wan")
     num_8wans = hand.count("8-wan")
-    num_2tiaos = hand.count("2-tiao")
-    num_5tiaos = hand.count("5-tiao")
-    num_8tiaos = hand.count("8-tiao")
-    num_2tongs = hand.count("2-tong")
-    num_5tongs = hand.count("5-tong")
-    num_8tongs = hand.count("8-tong")
+    # num_2tiaos = hand.count("2-tiao")
+    # num_5tiaos = hand.count("5-tiao")
+    # num_8tiaos = hand.count("8-tiao")
+    # num_2tongs = hand.count("2-tong")
+    # num_5tongs = hand.count("5-tong")
+    # num_8tongs = hand.count("8-tong")
     if num_2wans >= 2 or num_5wans >= 2 or num_8wans >= 2:
         return True
-    if num_2tiaos >= 2 or num_5tiaos >= 2 or num_8tiaos >= 2:
-        return True
-    if num_2tongs >= 2 or num_5tongs >= 2 or num_8tongs >= 2:
-        return True
+    # if num_2tiaos >= 2 or num_5tiaos >= 2 or num_8tiaos >= 2:
+    #     return True
+    # if num_2tongs >= 2 or num_5tongs >= 2 or num_8tongs >= 2:
+        # return True
     return False
 
 for first_tile in tile_pool:
@@ -67,6 +67,10 @@ for first_tile in tile_pool:
         tile_pool2.remove(second_tile)
         for third_tile in tile_pool2:
             hand.append(third_tile)
+            if is_jiang(hand):
+                num_is_jiang += 33
+                hand.pop()
+                continue
             tile_pool3 = tile_pool2.copy()
             tile_pool3.remove(third_tile)
             for fourth_tile in tile_pool3:
